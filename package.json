@@ -74,7 +74,8 @@
       "react-hooks"
     ],
     "rules": {
-      "react-hooks/rules-of-hooks": "error"
+      "react-hooks/rules-of-hooks": "error",
+      "semi": ["error", "always"]
     }
   },
   "browserslist": {
@@ -144,5 +145,6 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

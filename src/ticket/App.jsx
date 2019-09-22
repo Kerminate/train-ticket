@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
 import './App.css';
 
-function App(props) {
-
-}
+function App(props) {}
 
 export default connect(
-    function mapStateToProps(state) {},
-    function mapDispatchToProps(dispatch) {},
+  function mapStateToProps(state) {},
+  function mapDispatchToProps(dispatch) {}
 )(App);
