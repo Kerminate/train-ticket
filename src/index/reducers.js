@@ -20,6 +20,7 @@ export default {
         return payload;
       default:
     }
+    return state;
   },
   to(state = '上海', action) {
     const {
@@ -31,6 +32,7 @@ export default {
         return payload;
       default:
     }
+    return state;
   },
   isCitySelectorVisible(state = false, action) {
     const {
@@ -42,6 +44,7 @@ export default {
         return payload;
       default:
     }
+    return state;
   },
   currentSelectingLeftCity(state = false, action) {
     const {
@@ -53,6 +56,7 @@ export default {
         return payload;
       default:
     }
+    return state;
   },
   cityData(state = null, action) {
     const {
@@ -64,6 +68,7 @@ export default {
         return payload;
       default:
     }
+    return state;
   },
   isLoadingCityData(state = false, action) {
     const {
@@ -75,6 +80,7 @@ export default {
         return payload;
       default:
     }
+    return state;
   },
   isDateSelectorVisible(state = false, action) {
     const {
@@ -86,6 +92,7 @@ export default {
         return payload;
       default:
     }
+    return state;
   },
   highSpeed(state = false, action) {
     const {
@@ -97,5 +104,6 @@ export default {
         return payload;
       default:
     }
+    return state;
   },
 };
