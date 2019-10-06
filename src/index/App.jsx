@@ -10,7 +10,7 @@ import HighSpeed from './HighSpeed';
 import Journey from './Journey';
 import Submit from './Submit';
 
-import { exchangeFromTo, showCitySelector, hideCitySelector } from './actions';
+import { exchangeFromTo, showCitySelector, hideCitySelector, fetchCityData } from './actions';
 
 function App(props) {
   const {
@@ -35,7 +35,8 @@ function App(props) {
 
   const citySelectorCbs = useMemo(() => {
     return bindActionCreators({
-        onBack: hideCitySelector
+        onBack: hideCitySelector,
+        fetchCityData
       }, dispatch);
   }, [dispatch]);
 
