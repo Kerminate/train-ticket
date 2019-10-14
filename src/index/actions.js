@@ -84,6 +84,13 @@ export function setSelectedCity(city) {
 export function showDateSelector() {
   return {
     type: ACTION_SET_IS_DATE_SELECTOR_VISIBLE,
+    payload: true
+  };
+}
+
+export function hideDateSelector() {
+  return {
+    type: ACTION_SET_IS_DATE_SELECTOR_VISIBLE,
     payload: false
   };
 }

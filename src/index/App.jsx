@@ -5,6 +5,7 @@ import './App.css';
 
 import CitySelector from '../common/CitySelector';
 import Header from '../common/Header';
+import DateSelector from '../common/DateSelector';
 import DepartDate from './DepartDate';
 import HighSpeed from './HighSpeed';
 import Journey from './Journey';
@@ -16,7 +17,8 @@ import {
   hideCitySelector,
   fetchCityData,
   setSelectedCity,
-  showDateSelector
+  showDateSelector,
+  hideDateSelector
 } from './actions';
 
 function App(props) {
@@ -24,6 +26,7 @@ function App(props) {
     from,
     to,
     isCitySelectorVisible,
+    isDateSelectorVisible,
     cityData,
     isLoadingCityData,
     dispatch,
@@ -55,6 +58,12 @@ function App(props) {
     }, dispatch);
   }, [dispatch]);
 
+  const dateSelectorCbs = useMemo(() => {
+    return bindActionCreators({
+      onBack: hideDateSelector
+    }, dispatch);
+  }, [dispatch]);
+
   return (
     <div>
       <div className="header-wrapper">
@@ -74,6 +83,10 @@ function App(props) {
         cityData={cityData}
         isLoading={isLoadingCityData}
         {...citySelectorCbs}
+      />
+      <DateSelector
+        show={isDateSelectorVisible}
+        {...dateSelectorCbs}
       />
     </div>
   );
