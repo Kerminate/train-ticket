@@ -10,6 +10,7 @@ import DepartDate from './DepartDate';
 import HighSpeed from './HighSpeed';
 import Journey from './Journey';
 import Submit from './Submit';
+import { h0 } from "../common/fp";
 
 import {
   exchangeFromTo,
@@ -18,7 +19,8 @@ import {
   fetchCityData,
   setSelectedCity,
   showDateSelector,
-  hideDateSelector
+  hideDateSelector,
+  setDepartDate
 } from './actions';
 
 function App(props) {
@@ -64,6 +66,13 @@ function App(props) {
     }, dispatch);
   }, [dispatch]);
 
+  const onSelectDate = useCallback(day => {
+    if (!day) return;
+    if (day < h0()) return;
+    dispatch(setDepartDate(day));
+    dispatch(hideDateSelector());
+  }, [dispatch]);
+
   return (
     <div>
       <div className="header-wrapper">
@@ -87,6 +96,7 @@ function App(props) {
       <DateSelector
         show={isDateSelectorVisible}
         {...dateSelectorCbs}
+        onSelect={onSelectDate}
       />
     </div>
   );
