@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './Submit.css';
 
-const Submit = () => {
-  return <div></div>;
-};
+const Submit = memo(() => {
+  return (
+    <div className="submit">
+      <button type='submit' className="submit-button"> 搜索 </button>
+    </div>
+  );
+});
 
 export default Submit;
