@@ -1,7 +1,5 @@
-import {
-  ORDER_DEPART,
-  ORDER_DURATION
-} from "./constant";
+import { ORDER_DEPART, ORDER_DURATION } from './constant';
+import { h0 } from '../common/fp';
 
 export const ACTION_SET_FROM = 'FROM';
 export const ACTION_SET_TO = 'TO';
@@ -49,6 +47,12 @@ export function setHighSpeed(highSpeed) {
     payload: highSpeed
   };
 }
+export function toggleHighSpeed() {
+  return (dispatch, getState) => {
+    const { highSpeed } = getState();
+    dispatch(setHighSpeed(highSpeed));
+  };
+}
 export function setTrainList(trainList) {
   return {
     type: ACTION_SET_TRAIN_LIST,
@@ -57,9 +61,7 @@ export function setTrainList(trainList) {
 }
 export function toggleOrderType() {
   return (dispatch, getState) => {
-    const {
-      orderType
-    } = getState();
+    const { orderType } = getState();
     if (orderType === ORDER_DEPART) {
       dispatch({
         type: ACTION_SET_ORDER_TYPE,
@@ -73,10 +75,13 @@ export function toggleOrderType() {
     }
   };
 }
-export function setOnlyTickets(onlyTickets) {
-  return {
-    type: ACTION_SET_ONLY_TICKETS,
-    payload: onlyTickets
+export function toggleOnlyTickets() {
+  return (dispatch, getState) => {
+    const { onlyTickets } = getState();
+    dispatch({
+      type: ACTION_SET_ONLY_TICKETS,
+      payload: onlyTickets
+    });
   };
 }
 export function setTicketTypes(ticketTypes) {
@@ -151,15 +156,32 @@ export function setArriveTimeEnd(arriveTimeEnd) {
     payload: arriveTimeEnd
   };
 }
-export function setIsFiltersVisible(isFiltersVisible) {
-  return {
-    type: ACTION_SET_IS_FILTERS_VISIBLE,
-    payload: isFiltersVisible
+export function toggleIsFiltersVisible() {
+  return (dispatch, getState) => {
+    const { isFiltersVisible } = getState();
+    dispatch({
+      type: ACTION_SET_IS_FILTERS_VISIBLE,
+      payload: isFiltersVisible
+    });
   };
 }
 export function setSearchParsed(searchParsed) {
   return {
     type: ACTION_SET_SEARCH_PARSED,
     payload: searchParsed
+  };
+}
+
+export function nextDate() {
+  return (dispatch, getState) => {
+    const { departDate } = getState();
+    dispatch(setDepartDate(h0(departDate) + 86400 * 1000));
+  };
+}
+
+export function prevDate() {
+  return (dispatch, getState) => {
+    const { departDate } = getState();
+    dispatch(setDepartDate(h0(departDate) - 86400 * 1000));
   };
 }
