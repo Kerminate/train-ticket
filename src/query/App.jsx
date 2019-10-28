@@ -26,6 +26,7 @@ import './App.css';
 
 function App(props) {
   const {
+    trainList,
     dispatch,
     from,
     to,
@@ -120,20 +121,18 @@ function App(props) {
   }
 
   return (
-    <div className='app'>
+    <div>
       <div className="header-wrapper">
-        <Header title={`${from} ⇀ ${to}`} onBack={onBack}></Header>
+        <Header title={`${from} ⇀ ${to}`} onBack={onBack} />
       </div>
-      <div className="nav-wrapper">
-        <Nav
-          date={departDate}
-          isPrevDisabled={isPrevDisabled}
-          isNextDisabled={isNextDisabled}
-          prev={prev}
-          next={next}
-        />
-      </div>
-      <List/>
+      <Nav
+        date={departDate}
+        isPrevDisabled={isPrevDisabled}
+        isNextDisabled={isNextDisabled}
+        prev={prev}
+        next={next}
+      />
+      <List list={trainList} />
       <Bottom/>
     </div>
   );
