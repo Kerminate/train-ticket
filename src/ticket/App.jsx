@@ -2,6 +2,8 @@ import React, {
   useEffect,
   useCallback,
   useMemo,
+  lazy,
+  Suspense,
 } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
@@ -13,7 +15,6 @@ import useNav from "../common/useNav";
 import Nav from '../common/Nav';
 import Detail from "../common/Detail";
 import Candidate from "./Candidate";
-import Schedule from "./Schedule";
 
 import {
   setDepartStation,
@@ -32,6 +33,8 @@ import {
 } from "./actions";
 
 import './App.css';
+
+const Schedule = lazy(() => import('./Schedule'));
 
 function App(props) {
   const {
@@ -131,6 +134,22 @@ function App(props) {
           {...detailCbs}
         />
       </div>
+      {
+        isScheduleVisible &&
+          <div
+            className="mask"
+            onClick={() => dispatch(toggleIsScheduleVisible())}
+          >
+            <Suspense fallback={<div>loading</div>}>
+              <Schedule
+                date={departDate}
+                trainNumber={trainNumber}
+                departStation={departStation}
+                arriveStation={arriveStation}
+              />
+            </Suspense>
+          </div>
+      }
     </div>
   );
 }
