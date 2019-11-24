@@ -13,6 +13,7 @@ import Account from './Account';
 import Choose from './Choose';
 import Passengers from './Passengers';
 import Ticket from './Ticket';
+import Menu from './Menu';
 import {
   setDepartStation,
   setArriveStation,
@@ -25,6 +26,10 @@ import {
   createChild,
   removePassenger,
   updatePassenger,
+  hideMenu,
+  showGenderMenu,
+  showFollowAdultMenu,
+  showTicketTypeMenu,
 } from "./actions";
 
 import './App.css';
@@ -83,6 +88,15 @@ function App(props) {
       createChild,
       removePassenger,
       updatePassenger,
+      showGenderMenu,
+      showFollowAdultMenu,
+      showTicketTypeMenu,
+    }, dispatch);
+  }, [dispatch]);
+
+  const menuCbs = useMemo(() => {
+    return bindActionCreators({
+      hideMenu,
     }, dispatch);
   }, [dispatch]);
 
@@ -108,6 +122,11 @@ function App(props) {
         </div>
         <Ticket price={price} type={seatType} />
         <Passengers passengers={passengers} {...passengersCbs} />
+        <Menu
+          show={isMenuVisible}
+          {...menu}
+          {...menuCbs}
+        />
       </div>
     </div>
   );
