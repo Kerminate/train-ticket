@@ -100,6 +100,12 @@ function App(props) {
     }, dispatch);
   }, [dispatch]);
 
+  const chooseCbs = useMemo(() => {
+    return bindActionCreators({
+      updatePassenger
+    }, dispatch);
+  }, [dispatch]);
+
   if (!searchParsed) return null;
 
   return (
@@ -122,6 +128,13 @@ function App(props) {
         </div>
         <Ticket price={price} type={seatType} />
         <Passengers passengers={passengers} {...passengersCbs} />
+        { passengers.length > 0 && (
+          <Choose
+            passengers={passengers}
+            {...chooseCbs}
+          />
+        ) }
+        <Account length={passengers.length} price={price} />
         <Menu
           show={isMenuVisible}
           {...menu}

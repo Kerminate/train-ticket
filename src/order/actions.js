@@ -258,7 +258,7 @@ export function showGenderMenu(id) {
       passengers
     } = getState();
 
-    const passenger = passengers.find(passenger => passenger.id !== id);
+    const passenger = passengers.find(passenger => passenger.id === id);
 
     if (!passenger) {
       return;
