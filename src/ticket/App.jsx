@@ -1,21 +1,15 @@
-import React, {
-  useEffect,
-  useCallback,
-  useMemo,
-  lazy,
-  Suspense,
-} from "react";
-import { bindActionCreators } from "redux";
+import React, { useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import URI from "urijs";
-import dayjs from "dayjs";
+import URI from 'urijs';
+import dayjs from 'dayjs';
 import { h0 } from '../common/fp';
 import Header from '../common/Header';
-import useNav from "../common/useNav";
+import useNav from '../common/useNav';
 import Nav from '../common/Nav';
-import Detail from "../common/Detail";
-import Candidate from "./Candidate";
-import { TrainContext } from "./context";
+import Detail from '../common/Detail';
+import Candidate from './Candidate';
+import { TrainContext } from './context';
 
 import {
   setDepartStation,
@@ -30,8 +24,8 @@ import {
   setArriveDate,
   setDurationStr,
   setTickets,
-  toggleIsScheduleVisible,
-} from "./actions";
+  toggleIsScheduleVisible
+} from './actions';
 
 import './App.css';
 
@@ -51,7 +45,7 @@ function App(props) {
     isScheduleVisible,
     searchParsed,
 
-    dispatch,
+    dispatch
   } = props;
 
   const onBack = useCallback(() => {
@@ -83,7 +77,12 @@ function App(props) {
       .then(response => response.json())
       .then(result => {
         const { detail, candidates } = result;
-        const { departTimeStr, arriveTimeStr, arriveDate, durationStr } = detail;
+        const {
+          departTimeStr,
+          arriveTimeStr,
+          arriveDate,
+          durationStr
+        } = detail;
 
         dispatch(setDepartTimeStr(departTimeStr));
         dispatch(setArriveTimeStr(arriveTimeStr));
@@ -93,17 +92,20 @@ function App(props) {
       });
   }, [departDate, dispatch, searchParsed, trainNumber]);
 
-  const {
-    isPrevDisabled,
-    isNextDisabled,
-    prev,
-    next,
-  } = useNav(departDate, dispatch, prevDate, nextDate);
+  const { isPrevDisabled, isNextDisabled, prev, next } = useNav(
+    departDate,
+    dispatch,
+    prevDate,
+    nextDate
+  );
 
   const detailCbs = useMemo(() => {
-    return bindActionCreators({
-      toggleIsScheduleVisible
-    }, dispatch);
+    return bindActionCreators(
+      {
+        toggleIsScheduleVisible
+      },
+      dispatch
+    );
   }, [dispatch]);
 
   if (!searchParsed) return null;
@@ -134,29 +136,35 @@ function App(props) {
           durationStr={durationStr}
         >
           <span className="left"></span>
-            <span className="schedule" onClick={() => detailCbs.toggleIsScheduleVisible()}>时刻表</span>
-            <span className="right"></span>
+          <span
+            className="schedule"
+            onClick={() => detailCbs.toggleIsScheduleVisible()}
+          >
+            时刻表
+          </span>
+          <span className="right"></span>
         </Detail>
       </div>
-      <TrainContext.Provider value={{trainNumber, departStation, arriveStation, departDate}}>
+      <TrainContext.Provider
+        value={{ trainNumber, departStation, arriveStation, departDate }}
+      >
         <Candidate tickets={tickets} />
       </TrainContext.Provider>
-      {
-        isScheduleVisible &&
-          <div
-            className="mask"
-            onClick={() => dispatch(toggleIsScheduleVisible())}
-          >
-            <Suspense fallback={<div>loading</div>}>
-              <Schedule
-                date={departDate}
-                trainNumber={trainNumber}
-                departStation={departStation}
-                arriveStation={arriveStation}
-              />
-            </Suspense>
-          </div>
-      }
+      {isScheduleVisible && (
+        <div
+          className="mask"
+          onClick={() => dispatch(toggleIsScheduleVisible())}
+        >
+          <Suspense fallback={<div>loading</div>}>
+            <Schedule
+              date={departDate}
+              trainNumber={trainNumber}
+              departStation={departStation}
+              arriveStation={arriveStation}
+            />
+          </Suspense>
+        </div>
+      )}
     </div>
   );
 }

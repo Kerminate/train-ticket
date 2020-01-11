@@ -1,10 +1,8 @@
-import React, {
-  memo,
-} from 'react';
-import PropTypes from "prop-types";
-import "./Ticket.css";
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import './Ticket.css';
 
-const Ticket = memo((props) => {
+const Ticket = memo(props => {
   const { price, type } = props;
   return (
     <div className="ticket">
@@ -19,7 +17,7 @@ const Ticket = memo((props) => {
 
 Ticket.propTypes = {
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired
 };
 
 export default Ticket;

@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useMemo } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import URI from 'urijs';
-import dayjs from "dayjs";
-import { h0 } from "../common/fp";
+import dayjs from 'dayjs';
+import { h0 } from '../common/fp';
 import Header from '../common/Header';
-import Nav from "../common/Nav.jsx";
-import List from "./List.jsx";
-import Bottom from "./Bottom.jsx";
-import useNav from "../common/useNav";
+import Nav from '../common/Nav.jsx';
+import List from './List.jsx';
+import Bottom from './Bottom.jsx';
+import useNav from '../common/useNav';
 import {
   setFrom,
   setTo,
@@ -33,8 +33,8 @@ import {
   setDepartTimeStart,
   setDepartTimeEnd,
   setArriveTimeStart,
-  setArriveTimeEnd,
-} from "./actions";
+  setArriveTimeEnd
+} from './actions';
 import './App.css';
 
 function App(props) {
@@ -60,7 +60,7 @@ function App(props) {
     departTimeStart,
     departTimeEnd,
     arriveTimeStart,
-    arriveTimeEnd,
+    arriveTimeEnd
   } = props;
 
   useEffect(() => {
@@ -86,8 +86,14 @@ function App(props) {
       .setSearch('onlyTickets', onlyTickets)
       .setSearch('checkedTicketTypes', Object.keys(checkedTicketTypes).join())
       .setSearch('checkedTrainTypes', Object.keys(checkedTrainTypes).join())
-      .setSearch('checkedDepartStations', Object.keys(checkedDepartStations).join())
-      .setSearch('checkedArriveStations', Object.keys(checkedArriveStations).join())
+      .setSearch(
+        'checkedDepartStations',
+        Object.keys(checkedDepartStations).join()
+      )
+      .setSearch(
+        'checkedArriveStations',
+        Object.keys(checkedArriveStations).join()
+      )
       .setSearch('departTimeStart', departTimeStart)
       .setSearch('departTimeEnd', departTimeEnd)
       .setSearch('arriveTimeStart', arriveTimeStart)
@@ -101,12 +107,7 @@ function App(props) {
           dataMap: {
             directTrainInfo: {
               trains,
-              filter: {
-                ticketType,
-                trainType,
-                depStation,
-                arrStation
-              }
+              filter: { ticketType, trainType, depStation, arrStation }
             }
           }
         } = result;
@@ -116,34 +117,54 @@ function App(props) {
         dispatch(setDepartStations(depStation));
         dispatch(setArriveStations(arrStation));
       });
-  }, [from, to, departDate, highSpeed, searchParsed, orderType, onlyTickets, checkedTicketTypes, checkedTrainTypes, checkedDepartStations, checkedArriveStations, departTimeStart, departTimeEnd, arriveTimeStart, arriveTimeEnd, dispatch]);
+  }, [
+    from,
+    to,
+    departDate,
+    highSpeed,
+    searchParsed,
+    orderType,
+    onlyTickets,
+    checkedTicketTypes,
+    checkedTrainTypes,
+    checkedDepartStations,
+    checkedArriveStations,
+    departTimeStart,
+    departTimeEnd,
+    arriveTimeStart,
+    arriveTimeEnd,
+    dispatch
+  ]);
 
   const onBack = useCallback(() => {
     window.history.back();
   }, []);
 
-  const {
-    isPrevDisabled,
-    isNextDisabled,
-    prev,
-    next
-  } = useNav(departDate, dispatch, prevDate, nextDate);
+  const { isPrevDisabled, isNextDisabled, prev, next } = useNav(
+    departDate,
+    dispatch,
+    prevDate,
+    nextDate
+  );
 
   const bottomCbs = useMemo(() => {
-    return bindActionCreators({
-      toggleOrderType,
-      toggleHighSpeed,
-      toggleOnlyTickets,
-      toggleIsFiltersVisible,
-      setCheckedTicketTypes,
-      setCheckedTrainTypes,
-      setCheckedDepartStations,
-      setCheckedArriveStations,
-      setDepartTimeStart,
-      setDepartTimeEnd,
-      setArriveTimeStart,
-      setArriveTimeEnd,
-    }, dispatch);
+    return bindActionCreators(
+      {
+        toggleOrderType,
+        toggleHighSpeed,
+        toggleOnlyTickets,
+        toggleIsFiltersVisible,
+        setCheckedTicketTypes,
+        setCheckedTrainTypes,
+        setCheckedDepartStations,
+        setCheckedArriveStations,
+        setDepartTimeStart,
+        setDepartTimeEnd,
+        setArriveTimeStart,
+        setArriveTimeEnd
+      },
+      dispatch
+    );
   }, [dispatch]);
 
   if (!searchParsed) {

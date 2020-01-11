@@ -1,16 +1,13 @@
-import {
-  createStore,
-  compose,
-  applyMiddleware,
-  combineReducers,
-} from 'redux';
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 
 const rootReducer = combineReducers(reducers);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, {
+const store = createStore(
+  rootReducer,
+  {
     trainNumber: null,
     departStation: null,
     arriveStation: null,
@@ -24,10 +21,9 @@ const store = createStore(rootReducer, {
     passengers: [],
     menu: null,
     isMenuVisible: false,
-    searchParsed: false,
+    searchParsed: false
   },
-  composeEnhancers(
-    applyMiddleware(thunk),
-  ));
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 export default store;

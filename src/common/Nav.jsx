@@ -1,18 +1,12 @@
 import React, { useMemo, memo } from 'react';
 import PropTypes from 'prop-types';
-import classnames from "classnames";
-import dayjs from "dayjs";
+import classnames from 'classnames';
+import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import './Nav.css';
 
-const Nav = memo((props) => {
-  const {
-    date,
-    prev,
-    next,
-    isPrevDisabled,
-    isNextDisabled,
-  } = props;
+const Nav = memo(props => {
+  const { date, prev, next, isPrevDisabled, isNextDisabled } = props;
 
   const currentString = useMemo(() => {
     const d = dayjs(date);
@@ -47,7 +41,7 @@ Nav.propTypes = {
   prev: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
   isPrevDisabled: PropTypes.bool.isRequired,
-  isNextDisabled: PropTypes.bool.isRequired,
+  isNextDisabled: PropTypes.bool.isRequired
 };
 
 export default Nav;

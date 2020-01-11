@@ -2,8 +2,8 @@ import React from 'react';
 import switchImg from './imgs/switch.svg';
 import './Journey.css';
 
-const Journey = (props) => {
-  const { from, to, exchangeFromTo, showCitySelector  } = props;
+const Journey = props => {
+  const { from, to, exchangeFromTo, showCitySelector } = props;
   return (
     <div className="journey">
       <div className="journey-station" onClick={() => showCitySelector(true)}>

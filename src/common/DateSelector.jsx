@@ -2,14 +2,14 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import Header from './Header';
-import { h0 } from "../common/fp";
+import { h0 } from '../common/fp';
 import './DateSelector.css';
 
 const Day = props => {
   const { day, onSelect } = props;
 
   if (!day) {
-    return <td className="null"/>;
+    return <td className="null" />;
   }
 
   const classes = [];
@@ -31,7 +31,7 @@ const Day = props => {
 
 Day.propTypes = {
   day: PropTypes.number,
-  onSelect : PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 const Week = props => {
@@ -39,24 +39,16 @@ const Week = props => {
 
   return (
     <tr className="date-table-days">
-      {
-        days.map((day, idx) => {
-          return (
-            <Day
-              key={idx}
-              day={day}
-              onSelect={onSelect}
-            />
-          );
-        })
-      }
+      {days.map((day, idx) => {
+        return <Day key={idx} day={day} onSelect={onSelect} />;
+      })}
     </tr>
   );
 };
 
 Week.propTypes = {
   days: PropTypes.array.isRequired,
-  onSelect : PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 const Month = props => {
@@ -65,16 +57,18 @@ const Month = props => {
   const currentDay = new Date(startingTimeInMonth);
 
   let days = [];
-  while(currentDay.getMonth() === startDay.getMonth()) {
+  while (currentDay.getMonth() === startDay.getMonth()) {
     days.push(currentDay.getTime());
     currentDay.setDate(currentDay.getDate() + 1);
   }
   days = new Array(startDay.getDay() ? startDay.getDay() - 1 : 6)
-    .fill(null).concat(days);
+    .fill(null)
+    .concat(days);
 
   const lastDay = new Date(days[days.length - 1]);
-  days = days.concat(new Array(lastDay.getDay() ? 7 - lastDay.getDay() : 0)
-    .fill(null));
+  days = days.concat(
+    new Array(lastDay.getDay() ? 7 - lastDay.getDay() : 0).fill(null)
+  );
 
   const weeks = [];
   for (let row = 0; row < days.length / 7; ++row) {
@@ -86,7 +80,7 @@ const Month = props => {
     <table className="date-table">
       <thead>
         <tr>
-          <td colSpan='7'>
+          <td colSpan="7">
             <h5>
               {startDay.getFullYear()}年{startDay.getMonth() + 1}月
             </h5>
@@ -103,17 +97,9 @@ const Month = props => {
           <th className="weekend">周六</th>
           <th className="weekend">周日</th>
         </tr>
-        {
-          weeks.map((week, idx) => {
-            return (
-              <Week
-                key={idx}
-                days={week}
-                onSelect={onSelect}
-              />
-            );
-          })
-        }
+        {weeks.map((week, idx) => {
+          return <Week key={idx} days={week} onSelect={onSelect} />;
+        })}
       </tbody>
     </table>
   );
@@ -121,10 +107,10 @@ const Month = props => {
 
 Month.propTypes = {
   startingTimeInMonth: PropTypes.number.isRequired,
-  onSelect : PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
-const DateSelector = (props) => {
+const DateSelector = props => {
   const { show, onSelect, onBack } = props;
   const now = new Date();
   now.setHours(0);
@@ -140,20 +126,18 @@ const DateSelector = (props) => {
   monthSequence.push(now.getTime());
 
   return (
-    <div className={classnames('date-selector', {hidden: !show})}>
-      <Header title='日期选择' onBack={onBack} />
+    <div className={classnames('date-selector', { hidden: !show })}>
+      <Header title="日期选择" onBack={onBack} />
       <div className="date-selector-tables">
-        {
-          monthSequence.map(month => {
-            return (
-              <Month
-                key={month}
-                startingTimeInMonth={month}
-                onSelect={onSelect}
-              />
-            );
-          })
-        }
+        {monthSequence.map(month => {
+          return (
+            <Month
+              key={month}
+              startingTimeInMonth={month}
+              onSelect={onSelect}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -161,8 +145,8 @@ const DateSelector = (props) => {
 
 DateSelector.propTypes = {
   show: PropTypes.bool.isRequired,
-  onSelect : PropTypes.func.isRequired,
-  onBack : PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onBack: PropTypes.func.isRequired
 };
 
 export default DateSelector;

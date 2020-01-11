@@ -1,46 +1,36 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-  memo
-} from 'react';
+import React, { useState, useCallback, useEffect, useMemo, memo } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import './CitySelector.css';
 
-const CityItem = memo((props) => {
+const CityItem = memo(props => {
   const { name, onSelect } = props;
 
   return (
-    <li className="city-li" onClick={() => onSelect(name) }>{name}</li>
+    <li className="city-li" onClick={() => onSelect(name)}>
+      {name}
+    </li>
   );
 });
 
 CityItem.propTypes = {
   name: PropTypes.string.isRequired,
-  onSelect : PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
-const CitySection = memo((props) => {
+const CitySection = memo(props => {
   const { title, cities = [], onSelect } = props;
 
   return (
     <ul className="city-ul">
-      <li className="city-li" key='title' data-cate={title}>
+      <li className="city-li" key="title" data-cate={title}>
         {title}
       </li>
-      {
-        cities.map(city => {
-          return (
-            <CityItem
-              key={city.name}
-              name={city.name}
-              onSelect={onSelect}
-            />
-          );
-        })
-      }
+      {cities.map(city => {
+        return (
+          <CityItem key={city.name} name={city.name} onSelect={onSelect} />
+        );
+      })}
     </ul>
   );
 });
@@ -48,59 +38,49 @@ const CitySection = memo((props) => {
 CitySection.propTypes = {
   title: PropTypes.string.isRequired,
   cities: PropTypes.array,
-  onSelect : PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
-const AlphaIndex = memo((props) => {
+const AlphaIndex = memo(props => {
   const { alpha, onClick } = props;
 
   return (
     <i className="city-index-item" onClick={() => onClick(alpha)}>
-      { alpha }
+      {alpha}
     </i>
   );
 });
 
 AlphaIndex.propTypes = {
   alpha: PropTypes.string.isRequired,
-  onClick : PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 const alphabet = Array.from(new Array(26), (ele, index) => {
   return String.fromCharCode(65 + index);
 });
 
-const CityList = memo((props) => {
+const CityList = memo(props => {
   const { sections, onSelect, toAlpha } = props;
 
   return (
     <div className="city-list">
       <div className="city-cate">
-        {
-          sections.map(section => {
-            return (
-              <CitySection
-                key={section.title}
-                title={section.title}
-                cities={section.citys}
-                onSelect={onSelect}
-              />
-            );
-          })
-        }
+        {sections.map(section => {
+          return (
+            <CitySection
+              key={section.title}
+              title={section.title}
+              cities={section.citys}
+              onSelect={onSelect}
+            />
+          );
+        })}
       </div>
       <div className="city-index">
-        {
-          alphabet.map(alpha => {
-            return (
-              <AlphaIndex
-                key={alpha}
-                alpha={alpha}
-                onClick={toAlpha}
-              />
-            );
-          })
-        }
+        {alphabet.map(alpha => {
+          return <AlphaIndex key={alpha} alpha={alpha} onClick={toAlpha} />;
+        })}
       </div>
     </div>
   );
@@ -109,10 +89,10 @@ const CityList = memo((props) => {
 CityList.propTypes = {
   sections: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
-  toAlpha: PropTypes.func.isRequired,
+  toAlpha: PropTypes.func.isRequired
 };
 
-const SuggestItem = memo((props) => {
+const SuggestItem = memo(props => {
   const { name, onClick } = props;
 
   return (
@@ -124,10 +104,10 @@ const SuggestItem = memo((props) => {
 
 SuggestItem.propTypes = {
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
-const Suggest = memo((props) => {
+const Suggest = memo(props => {
   const { searchKey, onSelect } = props;
 
   const [result, setResult] = useState([]);
@@ -145,7 +125,7 @@ const Suggest = memo((props) => {
 
   const fallBackResult = useMemo(() => {
     if (!result.length) {
-      return [{display: searchKey}];
+      return [{ display: searchKey }];
     }
     return result;
   }, [result, searchKey]);
@@ -153,37 +133,27 @@ const Suggest = memo((props) => {
   return (
     <div className="city-suggest">
       <ul className="city-suggest-ul">
-        {
-          fallBackResult.map(item => {
-            return (
-              <SuggestItem
-                key={item.display}
-                name={item.display}
-                onClick={onSelect}
-              />
-            );
-          })
-        }
+        {fallBackResult.map(item => {
+          return (
+            <SuggestItem
+              key={item.display}
+              name={item.display}
+              onClick={onSelect}
+            />
+          );
+        })}
       </ul>
     </div>
   );
-
 });
 
 Suggest.propTypes = {
   searchKey: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
-const CitySelector = memo((props) => {
-  const {
-    show,
-    cityData,
-    isLoading,
-    fetchCityData,
-    onSelect,
-    onBack
-  } = props;
+const CitySelector = memo(props => {
+  const { show, cityData, isLoading, fetchCityData, onSelect, onBack } = props;
 
   const [searchKey, setSearchKey] = useState('');
 
@@ -221,7 +191,7 @@ const CitySelector = memo((props) => {
   return (
     <div className={classnames('city-selector', { hidden: !show })}>
       <div className="city-search">
-        <div className="search-back" onClick={() => onBack( )}>
+        <div className="search-back" onClick={() => onBack()}>
           <svg width="42" height="42">
             <polyline
               points="25,13 16,21 25,29"
@@ -247,15 +217,10 @@ const CitySelector = memo((props) => {
           &#xf063;
         </i>
       </div>
-      {
-        Boolean(key) && (
-          <Suggest
-            searchKey={key}
-            onSelect={key => onSelect(key)}
-          />
-        )
-      }
-      { outputCitySections() }
+      {Boolean(key) && (
+        <Suggest searchKey={key} onSelect={key => onSelect(key)} />
+      )}
+      {outputCitySections()}
     </div>
   );
 });
@@ -265,7 +230,7 @@ CitySelector.propTypes = {
   cityData: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   onBack: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired
 };
 
 export default CitySelector;

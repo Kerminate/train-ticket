@@ -1,9 +1,4 @@
-import {
-  createStore,
-  compose,
-  applyMiddleware,
-  combineReducers,
-} from 'redux';
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 
@@ -11,7 +6,8 @@ const rootReducer = combineReducers(reducers);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-  rootReducer, {
+  rootReducer,
+  {
     from: '北京',
     to: '上海',
     isCitySelectorVisible: false,
@@ -21,9 +17,7 @@ const store = createStore(
     isDateSelectorVisible: false,
     highSpeed: false
   },
-  composeEnhancers(
-    applyMiddleware(thunk),
-  )
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 export default store;

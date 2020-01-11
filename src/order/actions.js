@@ -16,98 +16,98 @@ export const ACTION_SET_SEARCH_PARSED = 'SET_SEARCH_PARSED';
 export function setTrainNumber(trainNumber) {
   return {
     type: ACTION_SET_TRAIN_NUMBER,
-    payload: trainNumber,
+    payload: trainNumber
   };
 }
 
 export function setDepartStation(departStation) {
   return {
     type: ACTION_SET_DEPART_STATION,
-    payload: departStation,
+    payload: departStation
   };
 }
 
 export function setArriveStation(arriveStation) {
   return {
     type: ACTION_SET_ARRIVE_STATION,
-    payload: arriveStation,
+    payload: arriveStation
   };
 }
 
 export function setSeatType(seatType) {
   return {
     type: ACTION_SET_SEAT_TYPE,
-    payload: seatType,
+    payload: seatType
   };
 }
 
 export function setDepartDate(departDate) {
   return {
     type: ACTION_SET_DEPART_DATE,
-    payload: departDate,
+    payload: departDate
   };
 }
 
 export function setArriveDate(arriveDate) {
   return {
     type: ACTION_SET_ARRIVE_DATE,
-    payload: arriveDate,
+    payload: arriveDate
   };
 }
 
 export function setDepartTimeStr(departTimeStr) {
   return {
     type: ACTION_SET_DEPART_TIME_STR,
-    payload: departTimeStr,
+    payload: departTimeStr
   };
 }
 
 export function setArriveTimeStr(arriveTimeStr) {
   return {
     type: ACTION_SET_ARRIVE_TIME_STR,
-    payload: arriveTimeStr,
+    payload: arriveTimeStr
   };
 }
 
 export function setDurationStr(durationStr) {
   return {
     type: ACTION_SET_DURATION_STR,
-    payload: durationStr,
+    payload: durationStr
   };
 }
 
 export function setPrice(price) {
   return {
     type: ACTION_SET_PRICE,
-    payload: price,
+    payload: price
   };
 }
 
 export function setPassengers(passengers) {
   return {
     type: ACTION_SET_PASSENGERS,
-    payload: passengers,
+    payload: passengers
   };
 }
 
 export function setMenu(menu) {
   return {
     type: ACTION_SET_MENU,
-    payload: menu,
+    payload: menu
   };
 }
 
 export function setIsMenuVisible(isMenuVisible) {
   return {
     type: ACTION_SET_IS_MENU_VISIBLE,
-    payload: isMenuVisible,
+    payload: isMenuVisible
   };
 }
 
 export function setSearchParsed(searchParsed) {
   return {
     type: ACTION_SET_SEARCH_PARSED,
-    payload: searchParsed,
+    payload: searchParsed
   };
 }
 
@@ -121,7 +121,7 @@ export function fetchInitial(url) {
           arriveTimeStr,
           arriveDate,
           durationStr,
-          price,
+          price
         } = data;
 
         dispatch(setDepartTimeStr(departTimeStr));
@@ -137,12 +137,12 @@ let passengerIdSeed = 0;
 
 export function createAdult() {
   return (dispatch, getState) => {
-    const {
-      passengers
-    } = getState();
+    const { passengers } = getState();
 
+    // eslint-disable-next-line no-unused-vars
     for (let passenger of passengers) {
       const keys = Object.keys(passenger);
+      // eslint-disable-next-line no-unused-vars
       for (let key of keys) {
         if (!passenger[key]) {
           return;
@@ -158,8 +158,8 @@ export function createAdult() {
           name: '',
           ticketType: 'adult',
           licenceNo: '',
-          seat: 'Z',
-        },
+          seat: 'Z'
+        }
       ])
     );
   };
@@ -167,14 +167,14 @@ export function createAdult() {
 
 export function createChild() {
   return (dispatch, getState) => {
-    const {
-      passengers
-    } = getState();
+    const { passengers } = getState();
 
     let adultFound = null;
 
+    // eslint-disable-next-line no-unused-vars
     for (let passenger of passengers) {
       const keys = Object.keys(passenger);
+      // eslint-disable-next-line no-unused-vars
       for (let key of keys) {
         if (!passenger[key]) {
           return;
@@ -201,8 +201,8 @@ export function createChild() {
           birthday: '',
           followAdult: adultFound,
           ticketType: 'child',
-          seat: 'Z',
-        },
+          seat: 'Z'
+        }
       ])
     );
   };
@@ -210,9 +210,7 @@ export function createChild() {
 
 export function removePassenger(id) {
   return (dispatch, getState) => {
-    const {
-      passengers
-    } = getState();
+    const { passengers } = getState();
 
     const newPassengers = passengers.filter(passenger => {
       return passenger.id !== id && passenger.followAdult !== id;
@@ -224,15 +222,14 @@ export function removePassenger(id) {
 
 export function updatePassenger(id, data, keysToBeRemoved = []) {
   return (dispatch, getState) => {
-    const {
-      passengers
-    } = getState();
+    const { passengers } = getState();
 
     for (let i = 0; i < passengers.length; ++i) {
       if (passengers[i].id === id) {
         const newPassengers = [...passengers];
         newPassengers[i] = Object.assign({}, passengers[i], data);
 
+        // eslint-disable-next-line no-unused-vars
         for (let key of keysToBeRemoved) {
           delete newPassengers[i][key];
         }
@@ -254,9 +251,7 @@ export function showMenu(menu) {
 
 export function showGenderMenu(id) {
   return (dispatch, getState) => {
-    const {
-      passengers
-    } = getState();
+    const { passengers } = getState();
 
     const passenger = passengers.find(passenger => passenger.id === id);
 
@@ -267,22 +262,25 @@ export function showGenderMenu(id) {
     dispatch(
       showMenu({
         onPress(gender) {
-          dispatch(updatePassenger(id, {
-            gender
-          }));
+          dispatch(
+            updatePassenger(id, {
+              gender
+            })
+          );
           dispatch(hideMenu());
         },
-        options: [{
+        options: [
+          {
             title: '男',
             value: 'male',
-            active: 'male' === passenger.gender,
+            active: 'male' === passenger.gender
           },
           {
             title: '女',
             value: 'female',
-            active: 'female' === passenger.gender,
-          },
-        ],
+            active: 'female' === passenger.gender
+          }
+        ]
       })
     );
   };
@@ -290,9 +288,7 @@ export function showGenderMenu(id) {
 
 export function showFollowAdultMenu(id) {
   return (dispatch, getState) => {
-    const {
-      passengers
-    } = getState();
+    const { passengers } = getState();
 
     const passenger = passengers.find(passenger => passenger.id === id);
 
@@ -303,9 +299,11 @@ export function showFollowAdultMenu(id) {
     dispatch(
       showMenu({
         onPress(followAdult) {
-          dispatch(updatePassenger(id, {
-            followAdult
-          }));
+          dispatch(
+            updatePassenger(id, {
+              followAdult
+            })
+          );
           dispatch(hideMenu());
         },
         options: passengers
@@ -314,9 +312,9 @@ export function showFollowAdultMenu(id) {
             return {
               title: adult.name,
               value: adult.id,
-              active: adult.id === passenger.followAdult,
+              active: adult.id === passenger.followAdult
             };
-          }),
+          })
       })
     );
   };
@@ -324,9 +322,7 @@ export function showFollowAdultMenu(id) {
 
 export function showTicketTypeMenu(id) {
   return (dispatch, getState) => {
-    const {
-      passengers
-    } = getState();
+    const { passengers } = getState();
 
     const passenger = passengers.find(passenger => passenger.id === id);
 
@@ -340,9 +336,10 @@ export function showTicketTypeMenu(id) {
           if ('adult' === ticketType) {
             dispatch(
               updatePassenger(
-                id, {
+                id,
+                {
                   ticketType,
-                  licenceNo: '',
+                  licenceNo: ''
                 },
                 ['gender', 'followAdult', 'birthday']
               )
@@ -350,18 +347,18 @@ export function showTicketTypeMenu(id) {
           } else {
             const adult = passengers.find(
               passenger =>
-              passenger.id === id &&
-              passenger.ticketType === 'adult'
+                passenger.id === id && passenger.ticketType === 'adult'
             );
 
             if (adult) {
               dispatch(
                 updatePassenger(
-                  id, {
+                  id,
+                  {
                     ticketType,
                     gender: '',
                     followAdult: adult.id,
-                    birthday: '',
+                    birthday: ''
                   },
                   ['licenceNo']
                 )
@@ -373,17 +370,18 @@ export function showTicketTypeMenu(id) {
 
           dispatch(hideMenu());
         },
-        options: [{
+        options: [
+          {
             title: '成人票',
             value: 'adult',
-            active: 'adult' === passenger.ticketType,
+            active: 'adult' === passenger.ticketType
           },
           {
             title: '儿童票',
             value: 'child',
-            active: 'child' === passenger.ticketType,
-          },
-        ],
+            active: 'child' === passenger.ticketType
+          }
+        ]
       })
     );
   };

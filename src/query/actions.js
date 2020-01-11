@@ -1,10 +1,5 @@
-import {
-  ORDER_DEPART,
-  ORDER_DURATION
-} from './constant';
-import {
-  h0
-} from '../common/fp';
+import { ORDER_DEPART, ORDER_DURATION } from './constant';
+import { h0 } from '../common/fp';
 
 export const ACTION_SET_FROM = 'FROM';
 export const ACTION_SET_TO = 'TO';
@@ -57,9 +52,7 @@ export function setHighSpeed(highSpeed) {
 }
 export function toggleHighSpeed() {
   return (dispatch, getState) => {
-    const {
-      highSpeed
-    } = getState();
+    const { highSpeed } = getState();
     dispatch(setHighSpeed(!highSpeed));
   };
 }
@@ -73,9 +66,7 @@ export function setTrainList(trainList) {
 
 export function toggleOrderType() {
   return (dispatch, getState) => {
-    const {
-      orderType
-    } = getState();
+    const { orderType } = getState();
     if (orderType === ORDER_DEPART) {
       dispatch({
         type: ACTION_SET_ORDER_TYPE,
@@ -92,9 +83,7 @@ export function toggleOrderType() {
 
 export function toggleOnlyTickets() {
   return (dispatch, getState) => {
-    const {
-      onlyTickets
-    } = getState();
+    const { onlyTickets } = getState();
     dispatch({
       type: ACTION_SET_ONLY_TICKETS,
       payload: !onlyTickets
@@ -188,9 +177,7 @@ export function setArriveTimeEnd(arriveTimeEnd) {
 
 export function toggleIsFiltersVisible() {
   return (dispatch, getState) => {
-    const {
-      isFiltersVisible
-    } = getState();
+    const { isFiltersVisible } = getState();
     dispatch({
       type: ACTION_SET_IS_FILTERS_VISIBLE,
       payload: !isFiltersVisible
@@ -207,18 +194,14 @@ export function setSearchParsed(searchParsed) {
 
 export function nextDate() {
   return (dispatch, getState) => {
-    const {
-      departDate
-    } = getState();
+    const { departDate } = getState();
     dispatch(setDepartDate(h0(departDate) + 86400 * 1000));
   };
 }
 
 export function prevDate() {
   return (dispatch, getState) => {
-    const {
-      departDate
-    } = getState();
+    const { departDate } = getState();
     dispatch(setDepartDate(h0(departDate) - 86400 * 1000));
   };
 }

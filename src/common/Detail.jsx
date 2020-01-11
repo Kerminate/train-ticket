@@ -1,8 +1,5 @@
-import React, {
-  memo,
-  useMemo,
-} from 'react';
-import PropTypes from "prop-types";
+import React, { memo, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import './Detail.css';
@@ -12,7 +9,7 @@ function format(d) {
   return date.format('MM-DD') + ' ' + date.locale('zh-cn').format('ddd');
 }
 
-const Detail = memo((props) => {
+const Detail = memo(props => {
   const {
     departDate,
     arriveDate,
@@ -21,7 +18,7 @@ const Detail = memo((props) => {
     trainNumber,
     departStation,
     arriveStation,
-    durationStr,
+    durationStr
   } = props;
 
   const departDateStr = useMemo(() => format(departDate), [departDate]);
@@ -31,21 +28,19 @@ const Detail = memo((props) => {
     <div className="detail">
       <div className="content">
         <div className="left">
-          <p className="city">{ departStation }</p>
-          <p className="time">{ departTimeStr }</p>
-          <p className="date">{ departDateStr }</p>
+          <p className="city">{departStation}</p>
+          <p className="time">{departTimeStr}</p>
+          <p className="date">{departDateStr}</p>
         </div>
         <div className="middle">
-          <p className="train-name">{ trainNumber }</p>
-          <p className="train-mid">
-            { props.children }
-          </p>
-          <p className="train-time">耗时{ durationStr }</p>
+          <p className="train-name">{trainNumber}</p>
+          <p className="train-mid">{props.children}</p>
+          <p className="train-time">耗时{durationStr}</p>
         </div>
         <div className="right">
-          <p className="city">{ arriveStation }</p>
-          <p className="time">{ arriveTimeStr }</p>
-          <p className="date">{ arriveDateStr }</p>
+          <p className="city">{arriveStation}</p>
+          <p className="time">{arriveTimeStr}</p>
+          <p className="date">{arriveDateStr}</p>
         </div>
       </div>
     </div>
@@ -60,7 +55,7 @@ Detail.propTypes = {
   trainNumber: PropTypes.string.isRequired,
   departStation: PropTypes.string.isRequired,
   arriveStation: PropTypes.string.isRequired,
-  durationStr: PropTypes.string,
+  durationStr: PropTypes.string
 };
 
 export default Detail;

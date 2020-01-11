@@ -1,12 +1,9 @@
-import React, {
-  memo,
-  useState
-} from 'react';
-import classnames from "classnames";
-import PropTypes from "prop-types";
-import "./Account.css";
+import React, { memo, useState } from 'react';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import './Account.css';
 
-const Account = memo((props) => {
+const Account = memo(props => {
   const { price, length } = props;
   const [expanded, setExpanded] = useState(false);
 
@@ -16,7 +13,7 @@ const Account = memo((props) => {
         className={classnames('price', { expanded })}
         onClick={() => setExpanded(!expanded)}
       >
-        <div className="money">{ length * price }</div>
+        <div className="money">{length * price}</div>
         <div className="amount">支付金额</div>
       </div>
       <div className="button">提交按钮</div>
@@ -32,8 +29,8 @@ const Account = memo((props) => {
         <ul>
           <li>
             <span>火车票</span>
-            <span>￥{ price }</span>
-            <span>&#xD7;{ length }</span>
+            <span>￥{price}</span>
+            <span>&#xD7;{length}</span>
           </li>
         </ul>
       </div>
@@ -43,7 +40,7 @@ const Account = memo((props) => {
 
 Account.propTypes = {
   price: PropTypes.number,
-  length: PropTypes.number.isRequired,
+  length: PropTypes.number.isRequired
 };
 
 export default Account;

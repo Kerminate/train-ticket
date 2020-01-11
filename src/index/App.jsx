@@ -10,7 +10,7 @@ import DepartDate from './DepartDate';
 import HighSpeed from './HighSpeed';
 import Journey from './Journey';
 import Submit from './Submit';
-import { h0 } from "../common/fp";
+import { h0 } from '../common/fp';
 
 import {
   exchangeFromTo,
@@ -42,43 +42,61 @@ function App(props) {
   }, []);
 
   const cbs = useMemo(() => {
-    return bindActionCreators({
-      exchangeFromTo,
-      showCitySelector
-    }, dispatch);
+    return bindActionCreators(
+      {
+        exchangeFromTo,
+        showCitySelector
+      },
+      dispatch
+    );
   }, [dispatch]);
 
   const citySelectorCbs = useMemo(() => {
-    return bindActionCreators({
+    return bindActionCreators(
+      {
         onBack: hideCitySelector,
         fetchCityData,
         onSelect: setSelectedCity
-      }, dispatch);
+      },
+      dispatch
+    );
   }, [dispatch]);
 
   const departDateCbs = useMemo(() => {
-    return bindActionCreators({
-      onClick: showDateSelector
-    }, dispatch);
+    return bindActionCreators(
+      {
+        onClick: showDateSelector
+      },
+      dispatch
+    );
   }, [dispatch]);
 
   const dateSelectorCbs = useMemo(() => {
-    return bindActionCreators({
-      onBack: hideDateSelector
-    }, dispatch);
+    return bindActionCreators(
+      {
+        onBack: hideDateSelector
+      },
+      dispatch
+    );
   }, [dispatch]);
 
-  const onSelectDate = useCallback(day => {
-    if (!day) return;
-    if (day < h0()) return;
-    dispatch(setDepartDate(day));
-    dispatch(hideDateSelector());
-  }, [dispatch]);
+  const onSelectDate = useCallback(
+    day => {
+      if (!day) return;
+      if (day < h0()) return;
+      dispatch(setDepartDate(day));
+      dispatch(hideDateSelector());
+    },
+    [dispatch]
+  );
 
   const highSpeedCbs = useMemo(() => {
-    return bindActionCreators({
-      toggle: toggleHighSpeed
-    }, dispatch);
+    return bindActionCreators(
+      {
+        toggle: toggleHighSpeed
+      },
+      dispatch
+    );
   }, [dispatch]);
 
   return (
@@ -86,16 +104,10 @@ function App(props) {
       <div className="header-wrapper">
         <Header title="火车票" onBack={onBack} />
       </div>
-      <form action='./query.html' className="form">
+      <form action="./query.html" className="form">
         <Journey from={from} to={to} {...cbs} />
-        <DepartDate
-          time={departDate}
-          {...departDateCbs}
-        />
-        <HighSpeed
-          highSpeed={highSpeed}
-          {...highSpeedCbs}
-        />
+        <DepartDate time={departDate} {...departDateCbs} />
+        <HighSpeed highSpeed={highSpeed} {...highSpeedCbs} />
         <Submit />
       </form>
       <CitySelector

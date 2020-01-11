@@ -1,7 +1,4 @@
-import {
-  useState,
-  useEffect
-} from "react";
+import { useState, useEffect } from 'react';
 
 export default function useWinSize() {
   const [width, setWidth] = useState(document.documentElement.clientWidth);

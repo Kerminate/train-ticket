@@ -1,22 +1,15 @@
-import {
-  createStore,
-  compose,
-  applyMiddleware,
-  combineReducers,
-} from 'redux';
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
-import {
-  h0
-} from "../common/fp";
-import {
-  ORDER_DEPART
-} from "./constant";
+import { h0 } from '../common/fp';
+import { ORDER_DEPART } from './constant';
 
 const rootReducer = combineReducers(reducers);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, {
+const store = createStore(
+  rootReducer,
+  {
     from: null,
     to: null,
     departDate: h0(Date.now()),
@@ -37,11 +30,9 @@ const store = createStore(rootReducer, {
     arriveTimeStart: 0,
     arriveTimeEnd: 24,
     isFiltersVisible: false,
-    searchParsed: false,
+    searchParsed: false
   },
-  composeEnhancers(
-    applyMiddleware(thunk),
-  )
+  composeEnhancers(applyMiddleware(thunk))
 );
 
 export default store;

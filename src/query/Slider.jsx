@@ -1,22 +1,16 @@
-import React, {
-  memo,
-  useState,
-  useMemo,
-  useRef,
-  useEffect,
-} from 'react';
+import React, { memo, useState, useMemo, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import leftPad from "left-pad";
-import useWinSize from "../common/useWinSize";
+import leftPad from 'left-pad';
+import useWinSize from '../common/useWinSize';
 import './Slider.css';
 
-const Slider = memo((props) => {
+const Slider = memo(props => {
   const {
     title,
     currentStartHours,
     currentEndHours,
     onStartChanged,
-    onEndChanged,
+    onEndChanged
   } = props;
 
   const winSize = useWinSize();
@@ -31,8 +25,8 @@ const Slider = memo((props) => {
   const prevCurrentStartHours = useRef(currentStartHours);
   const prevCurrentEndHours = useRef(currentEndHours);
 
-  const [start, setStart] = useState(() => currentStartHours / 24 * 100);
-  const [end, setEnd] = useState(() => currentEndHours / 24 * 100);
+  const [start, setStart] = useState(() => (currentStartHours / 24) * 100);
+  const [end, setEnd] = useState(() => (currentEndHours / 24) * 100);
 
   if (prevCurrentStartHours.current !== currentStartHours) {
     setStart((currentStartHours / 24) * 100);
@@ -57,11 +51,11 @@ const Slider = memo((props) => {
   }, [end]);
 
   const startHours = useMemo(() => {
-    return Math.round(startPercent * 24 / 100);
+    return Math.round((startPercent * 24) / 100);
   }, [startPercent]);
 
   const endHours = useMemo(() => {
-    return Math.round(endPercent * 24 / 100);
+    return Math.round((endPercent * 24) / 100);
   }, [endPercent]);
 
   const startText = useMemo(() => {
@@ -72,17 +66,17 @@ const Slider = memo((props) => {
     return leftPad(endHours, 2, '0') + ':00';
   }, [endHours]);
 
-  const onStartTouchBegin = (e) => {
+  const onStartTouchBegin = e => {
     const touch = e.targetTouches[0];
     lastStartX.current = touch.pageX;
   };
 
-  const onEndTouchBegin = (e) => {
+  const onEndTouchBegin = e => {
     const touch = e.targetTouches[0];
     lastEndX.current = touch.pageX;
   };
 
-  const onStartTouchMove = (e) => {
+  const onStartTouchMove = e => {
     const touch = e.targetTouches[0];
     const distance = touch.pageX - lastStartX.current;
     lastStartX.current = touch.pageX;
@@ -90,7 +84,7 @@ const Slider = memo((props) => {
     setStart(start => start + (distance / rangeWidth.current) * 100);
   };
 
-  const onEndTouchMove = (e) => {
+  const onEndTouchMove = e => {
     const touch = e.targetTouches[0];
     const distance = touch.pageX - lastEndX.current;
     lastEndX.current = touch.pageX;
@@ -107,45 +101,33 @@ const Slider = memo((props) => {
   useEffect(() => {
     startHandle.current.addEventListener(
       'touchstart',
-       onStartTouchBegin,
-       false
+      onStartTouchBegin,
+      false
     );
-    startHandle.current.addEventListener(
-      'touchmove',
-       onStartTouchMove,
-       false
-    );
-    endHandle.current.addEventListener(
-      'touchstart',
-       onEndTouchBegin,
-       false
-    );
-    endHandle.current.addEventListener(
-      'touchmove',
-       onEndTouchMove,
-       false
-    );
+    startHandle.current.addEventListener('touchmove', onStartTouchMove, false);
+    endHandle.current.addEventListener('touchstart', onEndTouchBegin, false);
+    endHandle.current.addEventListener('touchmove', onEndTouchMove, false);
 
     return () => {
       startHandle.current.removeEventListener(
         'touchstart',
-         onStartTouchBegin,
-         false
+        onStartTouchBegin,
+        false
       );
       startHandle.current.removeEventListener(
         'touchmove',
-         onStartTouchMove,
-         false
+        onStartTouchMove,
+        false
       );
       endHandle.current.removeEventListener(
         'touchstart',
-         onEndTouchBegin,
-         false
+        onEndTouchBegin,
+        false
       );
       endHandle.current.removeEventListener(
         'touchmove',
-         onEndTouchBegin,
-         false
+        onEndTouchBegin,
+        false
       );
     };
   });
@@ -163,19 +145,29 @@ const Slider = memo((props) => {
       <h3>{title}</h3>
       <div className="range-slider">
         <div className="slider" ref={range}>
-          <div className="slider-range" style={{
-            left: startPercent + '%',
-            width: endPercent - startPercent + '%'
-          }}>
-          </div>
-          <i ref={startHandle} className="slider-handle" style={{
-            left: startPercent + '%',
-          }}>
+          <div
+            className="slider-range"
+            style={{
+              left: startPercent + '%',
+              width: endPercent - startPercent + '%'
+            }}
+          ></div>
+          <i
+            ref={startHandle}
+            className="slider-handle"
+            style={{
+              left: startPercent + '%'
+            }}
+          >
             <span>{startText}</span>
           </i>
-          <i ref={endHandle} className="slider-handle" style={{
-            left: endPercent + '%',
-          }}>
+          <i
+            ref={endHandle}
+            className="slider-handle"
+            style={{
+              left: endPercent + '%'
+            }}
+          >
             <span>{endText}</span>
           </i>
         </div>
@@ -189,7 +181,7 @@ Slider.propTypes = {
   currentStartHours: PropTypes.number.isRequired,
   currentEndHours: PropTypes.number.isRequired,
   onStartChanged: PropTypes.func.isRequired,
-  onEndChanged: PropTypes.func.isRequired,
+  onEndChanged: PropTypes.func.isRequired
 };
 
 export default Slider;

@@ -1,16 +1,12 @@
-import React, {
-  memo,
-  useState,
-  useEffect,
-} from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import classnames from 'classnames';
-import leftPad from "left-pad";
-import URI from "urijs";
-import dayjs from "dayjs";
-import PropTypes from "prop-types";
+import leftPad from 'left-pad';
+import URI from 'urijs';
+import dayjs from 'dayjs';
+import PropTypes from 'prop-types';
 import './Schedule.css';
 
-const ScheduleRow = memo((props) => {
+const ScheduleRow = memo(props => {
   const {
     index,
     station,
@@ -22,42 +18,46 @@ const ScheduleRow = memo((props) => {
     isDepartStation,
     isArriveStation,
     beforeDepartStation,
-    afterArriveStation,
+    afterArriveStation
   } = props;
 
   return (
     <li>
-      <div className={classnames('icon', {
-        'icon-red': isDepartStation || isArriveStation
-      })}>
-        {
-          isDepartStation
-            ? '出'
-            : isArriveStation
-              ? '到'
-              : leftPad(index, 2, 0)
-        }
+      <div
+        className={classnames('icon', {
+          'icon-red': isDepartStation || isArriveStation
+        })}
+      >
+        {isDepartStation ? '出' : isArriveStation ? '到' : leftPad(index, 2, 0)}
       </div>
-      <div className={classnames('row', {
-        grey: beforeDepartStation || afterArriveStation
-      })}>
-        <span className={classnames('station', {
-          red: isArriveStation || isDepartStation
-        })}>
-          { station }
+      <div
+        className={classnames('row', {
+          grey: beforeDepartStation || afterArriveStation
+        })}
+      >
+        <span
+          className={classnames('station', {
+            red: isArriveStation || isDepartStation
+          })}
+        >
+          {station}
         </span>
-        <span className={classnames('arrtime', {
-          red: isArriveStation
-        })}>
-          { isStartStation ? '始发站' : arriveTime }
+        <span
+          className={classnames('arrtime', {
+            red: isArriveStation
+          })}
+        >
+          {isStartStation ? '始发站' : arriveTime}
         </span>
-        <span className={classnames('deptime', {
-          red: isDepartStation
-        })}>
-          { isEndStation ? '终到站' : departTime }
+        <span
+          className={classnames('deptime', {
+            red: isDepartStation
+          })}
+        >
+          {isEndStation ? '终到站' : departTime}
         </span>
         <span className="stoptime">
-          { isStartStation || isEndStation ? '-' : stay + '分' }
+          {isStartStation || isEndStation ? '-' : stay + '分'}
         </span>
       </div>
     </li>
@@ -66,13 +66,8 @@ const ScheduleRow = memo((props) => {
 
 ScheduleRow.propTypes = {};
 
-const Schedule = memo((props) => {
-  const {
-    date,
-    trainNumber,
-    departStation,
-    arriveStation,
-  } = props;
+const Schedule = memo(props => {
+  const { date, trainNumber, departStation, arriveStation } = props;
 
   const [scheduleList, setScheduleList] = useState([]);
 
@@ -149,18 +144,16 @@ const Schedule = memo((props) => {
           <span className="arrtime">发车</span>
           <span className="stoptime">停留时间</span>
         </div>
-      <ul>
-        {
-          scheduleList.map((schedule, index) => {
+        <ul>
+          {scheduleList.map((schedule, index) => {
             return (
               <ScheduleRow
-              key={schedule.station}
-              index={index + 1}
-              {...schedule}
+                key={schedule.station}
+                index={index + 1}
+                {...schedule}
               />
-              );
-            })
-          }
+            );
+          })}
         </ul>
       </div>
     </div>
@@ -171,7 +164,7 @@ Schedule.propTypes = {
   date: PropTypes.number.isRequired,
   trainNumber: PropTypes.string.isRequired,
   departStation: PropTypes.string.isRequired,
-  arriveStation: PropTypes.string.isRequired,
+  arriveStation: PropTypes.string.isRequired
 };
 
 export default Schedule;

@@ -1,29 +1,16 @@
-import React, {
-  memo,
-  useState,
-  useCallback,
-  useMemo,
-  useContext,
-} from 'react';
-import URI from "urijs";
+import React, { memo, useState, useCallback, useMemo, useContext } from 'react';
+import URI from 'urijs';
 import dayjs from 'dayjs';
-import PropTypes from "prop-types";
-import { TrainContext } from "./context";
+import PropTypes from 'prop-types';
+import { TrainContext } from './context';
 import './Candidate.css';
 
-const Channel = memo((props) => {
-  const {
-    name,
-    desc,
-    type,
-  } = props;
+const Channel = memo(props => {
+  const { name, desc, type } = props;
 
-  const {
-    trainNumber,
-    departStation,
-    arriveStation,
-    departDate,
-  } = useContext(TrainContext);
+  const { trainNumber, departStation, arriveStation, departDate } = useContext(
+    TrainContext
+  );
 
   const src = useMemo(() => {
     return new URI('order.html')
@@ -50,10 +37,10 @@ const Channel = memo((props) => {
 Channel.propTypes = {
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired
 };
 
-const Seat = memo((props) => {
+const Seat = memo(props => {
   const {
     type,
     priceMsg,
@@ -61,34 +48,30 @@ const Seat = memo((props) => {
     channels,
     expanded,
     onToggle,
-    idx,
-   } = props;
+    idx
+  } = props;
 
-  return <li>
-    <div className="bar" onClick={() => onToggle(idx)}>
-      <span className="seat">{type}</span>
-      <span className="price">
-        <i>￥</i>
-        { priceMsg }
-      </span>
-      <span className="btn">{expanded ? '预订' : '收起'}</span>
-      <span className="num">{ticketsLeft}</span>
-    </div>
-    <div
-      className="channels"
-      style={{height: expanded ? channels.length * 55 + 'px' : 0}}
-    >
-      {
-        channels.map(channel => {
-          return <Channel
-            key={channel.name}
-            type={type}
-            {...channel}
-          />;
-        })
-      }
-    </div>
-  </li>;
+  return (
+    <li>
+      <div className="bar" onClick={() => onToggle(idx)}>
+        <span className="seat">{type}</span>
+        <span className="price">
+          <i>￥</i>
+          {priceMsg}
+        </span>
+        <span className="btn">{expanded ? '预订' : '收起'}</span>
+        <span className="num">{ticketsLeft}</span>
+      </div>
+      <div
+        className="channels"
+        style={{ height: expanded ? channels.length * 55 + 'px' : 0 }}
+      >
+        {channels.map(channel => {
+          return <Channel key={channel.name} type={type} {...channel} />;
+        })}
+      </div>
+    </li>
+  );
 });
 
 Seat.propTypes = {
@@ -98,39 +81,42 @@ Seat.propTypes = {
   channels: PropTypes.array.isRequired,
   expanded: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
-  idx: PropTypes.number.isRequired,
+  idx: PropTypes.number.isRequired
 };
 
-const Candidate = memo((props) => {
+const Candidate = memo(props => {
   const { tickets } = props;
 
   const [expandedIndex, setExpandedIndex] = useState(-1);
 
-  const onToggle = useCallback(idx => {
-    setExpandedIndex(idx === expandedIndex ? -1 : idx);
-  }, [expandedIndex]);
+  const onToggle = useCallback(
+    idx => {
+      setExpandedIndex(idx === expandedIndex ? -1 : idx);
+    },
+    [expandedIndex]
+  );
 
   return (
     <div className="candidate">
       <ul>
-        {
-          tickets.map((ticket, idx) => {
-            return <Seat
+        {tickets.map((ticket, idx) => {
+          return (
+            <Seat
               key={ticket.type}
               expanded={expandedIndex === idx}
               onToggle={onToggle}
               idx={idx}
               {...ticket}
-            />;
-          })
-        }
+            />
+          );
+        })}
       </ul>
     </div>
   );
 });
 
 Candidate.propTypes = {
-  tickets: PropTypes.array.isRequired,
+  tickets: PropTypes.array.isRequired
 };
 
 export default Candidate;
