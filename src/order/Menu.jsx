@@ -16,7 +16,7 @@ MenuItem.propTypes = {
   onPress: PropTypes.func,
   title: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  active: PropTypes.bool.isRequired
+  active: PropTypes.bool.isRequired,
 };
 
 const Menu = memo(props => {
@@ -47,7 +47,7 @@ Menu.propTypes = {
   show: PropTypes.bool.isRequired,
   options: PropTypes.array,
   onPress: PropTypes.func,
-  hideMenu: PropTypes.func.isRequired
+  hideMenu: PropTypes.func.isRequired,
 };
 
 export default Menu;

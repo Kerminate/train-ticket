@@ -30,7 +30,7 @@ const store = createStore(
     arriveTimeStart: 0,
     arriveTimeEnd: 24,
     isFiltersVisible: false,
-    searchParsed: false
+    searchParsed: false,
   },
   composeEnhancers(applyMiddleware(thunk))
 );

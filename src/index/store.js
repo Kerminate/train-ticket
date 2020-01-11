@@ -15,7 +15,7 @@ const store = createStore(
     cityData: null,
     isLoadingCityData: false,
     isDateSelectorVisible: false,
-    highSpeed: false
+    highSpeed: false,
   },
   composeEnhancers(applyMiddleware(thunk))
 );

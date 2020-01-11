@@ -3,7 +3,7 @@ import React, {
   useState,
   // useCallback,
   useMemo,
-  useReducer
+  useReducer,
 } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -46,7 +46,7 @@ Filter.propTypes = {
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const Option = memo(props => {
@@ -75,7 +75,7 @@ Option.propTypes = {
   title: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   checkedMap: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const BottomModal = memo(props => {
@@ -100,7 +100,7 @@ const BottomModal = memo(props => {
     setDepartTimeEnd,
     setArriveTimeStart,
     setArriveTimeEnd,
-    toggleIsFiltersVisible
+    toggleIsFiltersVisible,
   } = props;
 
   const [localCheckedTicketTypes, localCheckedTicketTypesDispatch] = useReducer(
@@ -108,7 +108,7 @@ const BottomModal = memo(props => {
     checkedTicketTypes,
     checkedTicketTypes => {
       return {
-        ...checkedTicketTypes
+        ...checkedTicketTypes,
       };
     }
   );
@@ -118,33 +118,33 @@ const BottomModal = memo(props => {
     checkedTrainTypes,
     checkedTrainTypes => {
       return {
-        ...checkedTrainTypes
+        ...checkedTrainTypes,
       };
     }
   );
 
   const [
     localCheckedDepartStations,
-    localCheckedDepartStationsDispatch
+    localCheckedDepartStationsDispatch,
   ] = useReducer(
     checkedReducer,
     checkedDepartStations,
     checkedDepartStations => {
       return {
-        ...checkedDepartStations
+        ...checkedDepartStations,
       };
     }
   );
 
   const [
     localCheckedArriveStations,
-    localCheckedArriveStationsDispatch
+    localCheckedArriveStationsDispatch,
   ] = useReducer(
     checkedReducer,
     checkedArriveStations,
     checkedArriveStations => {
       return {
-        ...checkedArriveStations
+        ...checkedArriveStations,
       };
     }
   );
@@ -163,26 +163,26 @@ const BottomModal = memo(props => {
       title: '坐席类型',
       options: ticketTypes,
       checkedMap: localCheckedTicketTypes,
-      dispatch: localCheckedTicketTypesDispatch
+      dispatch: localCheckedTicketTypesDispatch,
     },
     {
       title: '车次类型',
       options: trainTypes,
       checkedMap: localCheckedTrainTypes,
-      dispatch: localCheckedTrainTypesDispatch
+      dispatch: localCheckedTrainTypesDispatch,
     },
     {
       title: '出发车站',
       options: departStations,
       checkedMap: localCheckedDepartStations,
-      dispatch: localCheckedDepartStationsDispatch
+      dispatch: localCheckedDepartStationsDispatch,
     },
     {
       title: '到达车站',
       options: arriveStations,
       checkedMap: localCheckedArriveStations,
-      dispatch: localCheckedArriveStationsDispatch
-    }
+      dispatch: localCheckedArriveStationsDispatch,
+    },
   ];
 
   const sure = () => {
@@ -216,7 +216,7 @@ const BottomModal = memo(props => {
     localCheckedTicketTypes,
     localCheckedTrainTypes,
     localDepartTimeEnd,
-    localDepartTimeStart
+    localDepartTimeStart,
   ]);
 
   const reset = () => {
@@ -238,7 +238,7 @@ const BottomModal = memo(props => {
           <div className="title">
             <span
               className={classnames('reset', {
-                disabled: isResetDisabled
+                disabled: isResetDisabled,
               })}
               onClick={reset}
             >
@@ -294,7 +294,7 @@ BottomModal.propTypes = {
   setDepartTimeStart: PropTypes.func.isRequired,
   setDepartTimeEnd: PropTypes.func.isRequired,
   setArriveTimeStart: PropTypes.func.isRequired,
-  setArriveTimeEnd: PropTypes.func.isRequired
+  setArriveTimeEnd: PropTypes.func.isRequired,
 };
 
 const Bottom = props => {
@@ -326,7 +326,7 @@ const Bottom = props => {
     setDepartTimeStart,
     setDepartTimeEnd,
     setArriveTimeStart,
-    setArriveTimeEnd
+    setArriveTimeEnd,
   } = props;
 
   const noChecked = useMemo(() => {
@@ -348,7 +348,7 @@ const Bottom = props => {
     checkedTicketTypes,
     checkedTrainTypes,
     departTimeEnd,
-    departTimeStart
+    departTimeStart,
   ]);
 
   return (
@@ -374,7 +374,7 @@ const Bottom = props => {
         </span>
         <span
           className={classnames('item', {
-            'item-on': isFiltersVisible || !noChecked
+            'item-on': isFiltersVisible || !noChecked,
           })}
           onClick={toggleIsFiltersVisible}
         >
@@ -439,7 +439,7 @@ Bottom.propTypes = {
   setDepartTimeStart: PropTypes.func.isRequired,
   setDepartTimeEnd: PropTypes.func.isRequired,
   setArriveTimeStart: PropTypes.func.isRequired,
-  setArriveTimeEnd: PropTypes.func.isRequired
+  setArriveTimeEnd: PropTypes.func.isRequired,
 };
 
 export default Bottom;

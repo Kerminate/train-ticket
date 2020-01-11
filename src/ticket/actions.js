@@ -14,70 +14,70 @@ export const ACTION_SET_SEARCH_PARSED = 'SET_SEARCH_PARSED';
 export function setDepartDate(departDate) {
   return {
     type: ACTION_SET_DEPART_DATE,
-    payload: departDate
+    payload: departDate,
   };
 }
 
 export function setArriveDate(arriveDate) {
   return {
     type: ACTION_SET_ARRIVE_DATE,
-    payload: arriveDate
+    payload: arriveDate,
   };
 }
 
 export function setDepartTimeStr(departTimeStr) {
   return {
     type: ACTION_SET_DEPART_TIME_STR,
-    payload: departTimeStr
+    payload: departTimeStr,
   };
 }
 
 export function setArriveTimeStr(arriveTimeStr) {
   return {
     type: ACTION_SET_ARRIVE_TIME_STR,
-    payload: arriveTimeStr
+    payload: arriveTimeStr,
   };
 }
 
 export function setDepartStation(departStation) {
   return {
     type: ACTION_SET_DEPART_STATION,
-    payload: departStation
+    payload: departStation,
   };
 }
 
 export function setArriveStation(arriveStation) {
   return {
     type: ACTION_SET_ARRIVE_STATION,
-    payload: arriveStation
+    payload: arriveStation,
   };
 }
 
 export function setTrainNumber(trainNumber) {
   return {
     type: ACTION_SET_TRAIN_NUMBER,
-    payload: trainNumber
+    payload: trainNumber,
   };
 }
 
 export function setDurationStr(durationStr) {
   return {
     type: ACTION_SET_DURATION_STR,
-    payload: durationStr
+    payload: durationStr,
   };
 }
 
 export function setTickets(tickets) {
   return {
     type: ACTION_SET_TICKETS,
-    payload: tickets
+    payload: tickets,
   };
 }
 
 export function setIsScheduleVisible(isScheduleVisible) {
   return {
     type: ACTION_SET_IS_SCHEDULE_VISIBLE,
-    payload: isScheduleVisible
+    payload: isScheduleVisible,
   };
 }
 
@@ -92,7 +92,7 @@ export function toggleIsScheduleVisible() {
 export function setSearchParsed(searchParsed) {
   return {
     type: ACTION_SET_SEARCH_PARSED,
-    payload: searchParsed
+    payload: searchParsed,
   };
 }
 

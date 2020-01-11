@@ -21,7 +21,7 @@ import {
   showDateSelector,
   hideDateSelector,
   setDepartDate,
-  toggleHighSpeed
+  toggleHighSpeed,
 } from './actions';
 
 function App(props) {
@@ -34,7 +34,7 @@ function App(props) {
     isLoadingCityData,
     highSpeed,
     dispatch,
-    departDate
+    departDate,
   } = props;
 
   const onBack = useCallback(() => {
@@ -45,7 +45,7 @@ function App(props) {
     return bindActionCreators(
       {
         exchangeFromTo,
-        showCitySelector
+        showCitySelector,
       },
       dispatch
     );
@@ -56,7 +56,7 @@ function App(props) {
       {
         onBack: hideCitySelector,
         fetchCityData,
-        onSelect: setSelectedCity
+        onSelect: setSelectedCity,
       },
       dispatch
     );
@@ -65,7 +65,7 @@ function App(props) {
   const departDateCbs = useMemo(() => {
     return bindActionCreators(
       {
-        onClick: showDateSelector
+        onClick: showDateSelector,
       },
       dispatch
     );
@@ -74,7 +74,7 @@ function App(props) {
   const dateSelectorCbs = useMemo(() => {
     return bindActionCreators(
       {
-        onBack: hideDateSelector
+        onBack: hideDateSelector,
       },
       dispatch
     );
@@ -93,7 +93,7 @@ function App(props) {
   const highSpeedCbs = useMemo(() => {
     return bindActionCreators(
       {
-        toggle: toggleHighSpeed
+        toggle: toggleHighSpeed,
       },
       dispatch
     );

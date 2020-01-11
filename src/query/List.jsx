@@ -13,7 +13,7 @@ const ListItem = memo(props => {
     date,
     time,
     priceMsg,
-    dayAfter
+    dayAfter,
   } = props;
 
   const url = useMemo(() => {
@@ -70,7 +70,7 @@ ListItem.propTypes = {
   date: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   priceMsg: PropTypes.string.isRequired,
-  dayAfter: PropTypes.string.isRequired
+  dayAfter: PropTypes.string.isRequired,
 };
 
 const List = memo(props => {
@@ -85,7 +85,7 @@ const List = memo(props => {
 });
 
 List.propTypes = {
-  list: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired,
 };
 
 export default List;

@@ -25,7 +25,7 @@ import {
   hideMenu,
   showGenderMenu,
   showFollowAdultMenu,
-  showTicketTypeMenu
+  showTicketTypeMenu,
 } from './actions';
 
 import './App.css';
@@ -46,7 +46,7 @@ function App(props) {
     menu,
     isMenuVisible,
     searchParsed,
-    dispatch
+    dispatch,
   } = props;
 
   const onBack = useCallback(() => {
@@ -81,7 +81,7 @@ function App(props) {
     departStation,
     dispatch,
     searchParsed,
-    seatType
+    seatType,
   ]);
 
   const passengersCbs = useMemo(() => {
@@ -93,7 +93,7 @@ function App(props) {
         updatePassenger,
         showGenderMenu,
         showFollowAdultMenu,
-        showTicketTypeMenu
+        showTicketTypeMenu,
       },
       dispatch
     );
@@ -102,7 +102,7 @@ function App(props) {
   const menuCbs = useMemo(() => {
     return bindActionCreators(
       {
-        hideMenu
+        hideMenu,
       },
       dispatch
     );
@@ -111,7 +111,7 @@ function App(props) {
   const chooseCbs = useMemo(() => {
     return bindActionCreators(
       {
-        updatePassenger
+        updatePassenger,
       },
       dispatch
     );

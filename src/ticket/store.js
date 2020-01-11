@@ -19,7 +19,7 @@ const store = createStore(
     durationStr: null,
     tickets: [],
     isScheduleVisible: false,
-    searchParsed: false
+    searchParsed: false,
   },
   composeEnhancers(applyMiddleware(thunk))
 );

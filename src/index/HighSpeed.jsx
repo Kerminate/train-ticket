@@ -13,12 +13,12 @@ const HighSpeed = props => {
         <input type="hidden" name="highSpeed" value={highSpeed} />
         <div
           className={classnames('high-speed-track', {
-            checked: highSpeed
+            checked: highSpeed,
           })}
         >
           <span
             className={classnames('high-speed-handle', {
-              checked: highSpeed
+              checked: highSpeed,
             })}
           ></span>
         </div>
@@ -29,7 +29,7 @@ const HighSpeed = props => {
 
 HighSpeed.propTypes = {
   highSpeed: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired
+  toggle: PropTypes.func.isRequired,
 };
 
 export default HighSpeed;

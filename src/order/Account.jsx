@@ -40,7 +40,7 @@ const Account = memo(props => {
 
 Account.propTypes = {
   price: PropTypes.number,
-  length: PropTypes.number.isRequired
+  length: PropTypes.number.isRequired,
 };
 
 export default Account;

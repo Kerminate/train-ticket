@@ -12,7 +12,7 @@ import {
   ACTION_SET_PASSENGERS,
   ACTION_SET_MENU,
   ACTION_SET_IS_MENU_VISIBLE,
-  ACTION_SET_SEARCH_PARSED
+  ACTION_SET_SEARCH_PARSED,
 } from './actions';
 
 export default {
@@ -141,5 +141,5 @@ export default {
       default:
     }
     return state;
-  }
+  },
 };

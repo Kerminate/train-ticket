@@ -31,7 +31,7 @@ const DepartDate = props => {
 
 DepartDate.propTypes = {
   time: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 export default DepartDate;

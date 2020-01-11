@@ -14,28 +14,28 @@ export const ACTION_SET_DEPART_DATE = 'SET_DEPART_DATE';
 export function setFrom(from) {
   return {
     type: ACTION_SET_FROM,
-    payload: from
+    payload: from,
   };
 }
 
 export function setTo(to) {
   return {
     type: ACTION_SET_TO,
-    payload: to
+    payload: to,
   };
 }
 
 export function setIsLoadingCityData(isLoadingCityData) {
   return {
     type: ACTION_SET_IS_LOADING_CITY_DATA,
-    payload: isLoadingCityData
+    payload: isLoadingCityData,
   };
 }
 
 export function setCityData(cityData) {
   return {
     type: ACTION_SET_CITY_DATA,
-    payload: cityData
+    payload: cityData,
   };
 }
 
@@ -44,7 +44,7 @@ export function toggleHighSpeed() {
     const { highSpeed } = getState();
     dispatch({
       type: ACTION_SET_HIGH_SPEED,
-      payload: !highSpeed
+      payload: !highSpeed,
     });
   };
 }
@@ -53,11 +53,11 @@ export function showCitySelector(currentSelectingLeftCity) {
   return dispatch => {
     dispatch({
       type: ACTION_SET_IS_CITY_SELECTOR_VISIBLE,
-      payload: true
+      payload: true,
     });
     dispatch({
       type: ACTION_SET_CURRENT_SELECTING_LEFT_CITY,
-      payload: currentSelectingLeftCity
+      payload: currentSelectingLeftCity,
     });
   };
 }
@@ -65,7 +65,7 @@ export function showCitySelector(currentSelectingLeftCity) {
 export function hideCitySelector() {
   return {
     type: ACTION_SET_IS_CITY_SELECTOR_VISIBLE,
-    payload: false
+    payload: false,
   };
 }
 
@@ -84,14 +84,14 @@ export function setSelectedCity(city) {
 export function showDateSelector() {
   return {
     type: ACTION_SET_IS_DATE_SELECTOR_VISIBLE,
-    payload: true
+    payload: true,
   };
 }
 
 export function hideDateSelector() {
   return {
     type: ACTION_SET_IS_DATE_SELECTOR_VISIBLE,
-    payload: false
+    payload: false,
   };
 }
 
@@ -106,7 +106,7 @@ export function exchangeFromTo() {
 export function setDepartDate(departDate) {
   return {
     type: ACTION_SET_DEPART_DATE,
-    payload: departDate
+    payload: departDate,
   };
 }
 
@@ -133,7 +133,7 @@ export function fetchCityData() {
           'city_data_cache',
           JSON.stringify({
             expires: Date.now() + 60 * 1000,
-            data: cityData
+            data: cityData,
           })
         );
         dispatch(setIsLoadingCityData(false));

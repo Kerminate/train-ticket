@@ -24,7 +24,7 @@ import {
   setArriveDate,
   setDurationStr,
   setTickets,
-  toggleIsScheduleVisible
+  toggleIsScheduleVisible,
 } from './actions';
 
 import './App.css';
@@ -45,7 +45,7 @@ function App(props) {
     isScheduleVisible,
     searchParsed,
 
-    dispatch
+    dispatch,
   } = props;
 
   const onBack = useCallback(() => {
@@ -81,7 +81,7 @@ function App(props) {
           departTimeStr,
           arriveTimeStr,
           arriveDate,
-          durationStr
+          durationStr,
         } = detail;
 
         dispatch(setDepartTimeStr(departTimeStr));
@@ -102,7 +102,7 @@ function App(props) {
   const detailCbs = useMemo(() => {
     return bindActionCreators(
       {
-        toggleIsScheduleVisible
+        toggleIsScheduleVisible,
       },
       dispatch
     );

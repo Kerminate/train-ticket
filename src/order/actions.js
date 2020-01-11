@@ -16,98 +16,98 @@ export const ACTION_SET_SEARCH_PARSED = 'SET_SEARCH_PARSED';
 export function setTrainNumber(trainNumber) {
   return {
     type: ACTION_SET_TRAIN_NUMBER,
-    payload: trainNumber
+    payload: trainNumber,
   };
 }
 
 export function setDepartStation(departStation) {
   return {
     type: ACTION_SET_DEPART_STATION,
-    payload: departStation
+    payload: departStation,
   };
 }
 
 export function setArriveStation(arriveStation) {
   return {
     type: ACTION_SET_ARRIVE_STATION,
-    payload: arriveStation
+    payload: arriveStation,
   };
 }
 
 export function setSeatType(seatType) {
   return {
     type: ACTION_SET_SEAT_TYPE,
-    payload: seatType
+    payload: seatType,
   };
 }
 
 export function setDepartDate(departDate) {
   return {
     type: ACTION_SET_DEPART_DATE,
-    payload: departDate
+    payload: departDate,
   };
 }
 
 export function setArriveDate(arriveDate) {
   return {
     type: ACTION_SET_ARRIVE_DATE,
-    payload: arriveDate
+    payload: arriveDate,
   };
 }
 
 export function setDepartTimeStr(departTimeStr) {
   return {
     type: ACTION_SET_DEPART_TIME_STR,
-    payload: departTimeStr
+    payload: departTimeStr,
   };
 }
 
 export function setArriveTimeStr(arriveTimeStr) {
   return {
     type: ACTION_SET_ARRIVE_TIME_STR,
-    payload: arriveTimeStr
+    payload: arriveTimeStr,
   };
 }
 
 export function setDurationStr(durationStr) {
   return {
     type: ACTION_SET_DURATION_STR,
-    payload: durationStr
+    payload: durationStr,
   };
 }
 
 export function setPrice(price) {
   return {
     type: ACTION_SET_PRICE,
-    payload: price
+    payload: price,
   };
 }
 
 export function setPassengers(passengers) {
   return {
     type: ACTION_SET_PASSENGERS,
-    payload: passengers
+    payload: passengers,
   };
 }
 
 export function setMenu(menu) {
   return {
     type: ACTION_SET_MENU,
-    payload: menu
+    payload: menu,
   };
 }
 
 export function setIsMenuVisible(isMenuVisible) {
   return {
     type: ACTION_SET_IS_MENU_VISIBLE,
-    payload: isMenuVisible
+    payload: isMenuVisible,
   };
 }
 
 export function setSearchParsed(searchParsed) {
   return {
     type: ACTION_SET_SEARCH_PARSED,
-    payload: searchParsed
+    payload: searchParsed,
   };
 }
 
@@ -121,7 +121,7 @@ export function fetchInitial(url) {
           arriveTimeStr,
           arriveDate,
           durationStr,
-          price
+          price,
         } = data;
 
         dispatch(setDepartTimeStr(departTimeStr));
@@ -158,8 +158,8 @@ export function createAdult() {
           name: '',
           ticketType: 'adult',
           licenceNo: '',
-          seat: 'Z'
-        }
+          seat: 'Z',
+        },
       ])
     );
   };
@@ -201,8 +201,8 @@ export function createChild() {
           birthday: '',
           followAdult: adultFound,
           ticketType: 'child',
-          seat: 'Z'
-        }
+          seat: 'Z',
+        },
       ])
     );
   };
@@ -264,7 +264,7 @@ export function showGenderMenu(id) {
         onPress(gender) {
           dispatch(
             updatePassenger(id, {
-              gender
+              gender,
             })
           );
           dispatch(hideMenu());
@@ -273,14 +273,14 @@ export function showGenderMenu(id) {
           {
             title: '男',
             value: 'male',
-            active: 'male' === passenger.gender
+            active: 'male' === passenger.gender,
           },
           {
             title: '女',
             value: 'female',
-            active: 'female' === passenger.gender
-          }
-        ]
+            active: 'female' === passenger.gender,
+          },
+        ],
       })
     );
   };
@@ -301,7 +301,7 @@ export function showFollowAdultMenu(id) {
         onPress(followAdult) {
           dispatch(
             updatePassenger(id, {
-              followAdult
+              followAdult,
             })
           );
           dispatch(hideMenu());
@@ -312,9 +312,9 @@ export function showFollowAdultMenu(id) {
             return {
               title: adult.name,
               value: adult.id,
-              active: adult.id === passenger.followAdult
+              active: adult.id === passenger.followAdult,
             };
-          })
+          }),
       })
     );
   };
@@ -339,7 +339,7 @@ export function showTicketTypeMenu(id) {
                 id,
                 {
                   ticketType,
-                  licenceNo: ''
+                  licenceNo: '',
                 },
                 ['gender', 'followAdult', 'birthday']
               )
@@ -358,7 +358,7 @@ export function showTicketTypeMenu(id) {
                     ticketType,
                     gender: '',
                     followAdult: adult.id,
-                    birthday: ''
+                    birthday: '',
                   },
                   ['licenceNo']
                 )
@@ -374,14 +374,14 @@ export function showTicketTypeMenu(id) {
           {
             title: '成人票',
             value: 'adult',
-            active: 'adult' === passenger.ticketType
+            active: 'adult' === passenger.ticketType,
           },
           {
             title: '儿童票',
             value: 'child',
-            active: 'child' === passenger.ticketType
-          }
-        ]
+            active: 'child' === passenger.ticketType,
+          },
+        ],
       })
     );
   };

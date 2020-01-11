@@ -18,7 +18,7 @@ const Detail = memo(props => {
     trainNumber,
     departStation,
     arriveStation,
-    durationStr
+    durationStr,
   } = props;
 
   const departDateStr = useMemo(() => format(departDate), [departDate]);
@@ -55,7 +55,7 @@ Detail.propTypes = {
   trainNumber: PropTypes.string.isRequired,
   departStation: PropTypes.string.isRequired,
   arriveStation: PropTypes.string.isRequired,
-  durationStr: PropTypes.string
+  durationStr: PropTypes.string,
 };
 
 export default Detail;

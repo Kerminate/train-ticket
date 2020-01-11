@@ -10,7 +10,7 @@ const Slider = memo(props => {
     currentStartHours,
     currentEndHours,
     onStartChanged,
-    onEndChanged
+    onEndChanged,
   } = props;
 
   const winSize = useWinSize();
@@ -149,14 +149,14 @@ const Slider = memo(props => {
             className="slider-range"
             style={{
               left: startPercent + '%',
-              width: endPercent - startPercent + '%'
+              width: endPercent - startPercent + '%',
             }}
           ></div>
           <i
             ref={startHandle}
             className="slider-handle"
             style={{
-              left: startPercent + '%'
+              left: startPercent + '%',
             }}
           >
             <span>{startText}</span>
@@ -165,7 +165,7 @@ const Slider = memo(props => {
             ref={endHandle}
             className="slider-handle"
             style={{
-              left: endPercent + '%'
+              left: endPercent + '%',
             }}
           >
             <span>{endText}</span>
@@ -181,7 +181,7 @@ Slider.propTypes = {
   currentStartHours: PropTypes.number.isRequired,
   currentEndHours: PropTypes.number.isRequired,
   onStartChanged: PropTypes.func.isRequired,
-  onEndChanged: PropTypes.func.isRequired
+  onEndChanged: PropTypes.func.isRequired,
 };
 
 export default Slider;

@@ -15,7 +15,7 @@ const Passenger = memo(props => {
     onUpdate,
     showGenderMenu,
     showFollowAdultMenu,
-    showTicketTypeMenu
+    showTicketTypeMenu,
   } = props;
 
   const isAdult = ticketType === 'adult';
@@ -107,7 +107,7 @@ Passenger.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   showGenderMenu: PropTypes.func.isRequired,
   showFollowAdultMenu: PropTypes.func.isRequired,
-  showTicketTypeMenu: PropTypes.func.isRequired
+  showTicketTypeMenu: PropTypes.func.isRequired,
 };
 
 const Passengers = memo(props => {
@@ -119,7 +119,7 @@ const Passengers = memo(props => {
     updatePassenger,
     showGenderMenu,
     showFollowAdultMenu,
-    showTicketTypeMenu
+    showTicketTypeMenu,
   } = props;
 
   const nameMap = useMemo(() => {
@@ -167,7 +167,7 @@ Passengers.propTypes = {
   createChild: PropTypes.func.isRequired,
   showGenderMenu: PropTypes.func.isRequired,
   showFollowAdultMenu: PropTypes.func.isRequired,
-  showTicketTypeMenu: PropTypes.func.isRequired
+  showTicketTypeMenu: PropTypes.func.isRequired,
 };
 
 export default Passengers;

@@ -33,7 +33,7 @@ import {
   setDepartTimeStart,
   setDepartTimeEnd,
   setArriveTimeStart,
-  setArriveTimeEnd
+  setArriveTimeEnd,
 } from './actions';
 import './App.css';
 
@@ -60,7 +60,7 @@ function App(props) {
     departTimeStart,
     departTimeEnd,
     arriveTimeStart,
-    arriveTimeEnd
+    arriveTimeEnd,
   } = props;
 
   useEffect(() => {
@@ -107,9 +107,9 @@ function App(props) {
           dataMap: {
             directTrainInfo: {
               trains,
-              filter: { ticketType, trainType, depStation, arrStation }
-            }
-          }
+              filter: { ticketType, trainType, depStation, arrStation },
+            },
+          },
         } = result;
         dispatch(setTrainList(trains));
         dispatch(setTicketTypes(ticketType));
@@ -133,7 +133,7 @@ function App(props) {
     departTimeEnd,
     arriveTimeStart,
     arriveTimeEnd,
-    dispatch
+    dispatch,
   ]);
 
   const onBack = useCallback(() => {
@@ -161,7 +161,7 @@ function App(props) {
         setDepartTimeStart,
         setDepartTimeEnd,
         setArriveTimeStart,
-        setArriveTimeEnd
+        setArriveTimeEnd,
       },
       dispatch
     );

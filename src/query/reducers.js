@@ -19,7 +19,7 @@ import {
   ACTION_SET_ARRIVE_TIME_START,
   ACTION_SET_ARRIVE_TIME_END,
   ACTION_SET_IS_FILTERS_VISIBLE,
-  ACTION_SET_SEARCH_PARSED
+  ACTION_SET_SEARCH_PARSED,
 } from './actions';
 import { ORDER_DEPART } from './constant';
 
@@ -125,7 +125,7 @@ export default {
       case ACTION_SET_HIGH_SPEED:
         const highSpeed = payload;
         const newCheckedTrainTypes = {
-          ...state
+          ...state,
         };
         if (highSpeed) {
           newCheckedTrainTypes[1] = true;
@@ -228,5 +228,5 @@ export default {
       default:
     }
     return state;
-  }
+  },
 };

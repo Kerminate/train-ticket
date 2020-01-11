@@ -18,40 +18,40 @@ const ScheduleRow = memo(props => {
     isDepartStation,
     isArriveStation,
     beforeDepartStation,
-    afterArriveStation
+    afterArriveStation,
   } = props;
 
   return (
     <li>
       <div
         className={classnames('icon', {
-          'icon-red': isDepartStation || isArriveStation
+          'icon-red': isDepartStation || isArriveStation,
         })}
       >
         {isDepartStation ? '出' : isArriveStation ? '到' : leftPad(index, 2, 0)}
       </div>
       <div
         className={classnames('row', {
-          grey: beforeDepartStation || afterArriveStation
+          grey: beforeDepartStation || afterArriveStation,
         })}
       >
         <span
           className={classnames('station', {
-            red: isArriveStation || isDepartStation
+            red: isArriveStation || isDepartStation,
           })}
         >
           {station}
         </span>
         <span
           className={classnames('arrtime', {
-            red: isArriveStation
+            red: isArriveStation,
           })}
         >
           {isStartStation ? '始发站' : arriveTime}
         </span>
         <span
           className={classnames('deptime', {
-            red: isDepartStation
+            red: isDepartStation,
           })}
         >
           {isEndStation ? '终到站' : departTime}
@@ -90,14 +90,14 @@ const Schedule = memo(props => {
                 beforeDepartStation: false,
                 isDepartStation: true,
                 afterArriveStation: false,
-                isArriveStation: false
+                isArriveStation: false,
               });
             } else {
               Object.assign(data[i], {
                 beforeDepartStation: true,
                 isDepartStation: false,
                 afterArriveStation: false,
-                isArriveStation: false
+                isArriveStation: false,
               });
             }
           } else if (!arriveRow) {
@@ -106,14 +106,14 @@ const Schedule = memo(props => {
                 beforeDepartStation: false,
                 isDepartStation: false,
                 afterArriveStation: false,
-                isArriveStation: true
+                isArriveStation: true,
               });
             } else {
               Object.assign(data[i], {
                 beforeDepartStation: false,
                 isDepartStation: false,
                 afterArriveStation: false,
-                isArriveStation: false
+                isArriveStation: false,
               });
             }
           } else {
@@ -121,13 +121,13 @@ const Schedule = memo(props => {
               beforeDepartStation: false,
               isDepartStation: false,
               afterArriveStation: true,
-              isArriveStation: false
+              isArriveStation: false,
             });
           }
 
           Object.assign(data[i], {
             isStartStation: i === 0,
-            isEndStation: i === data.length - 1
+            isEndStation: i === data.length - 1,
           });
         }
         setScheduleList(data);
@@ -164,7 +164,7 @@ Schedule.propTypes = {
   date: PropTypes.number.isRequired,
   trainNumber: PropTypes.string.isRequired,
   departStation: PropTypes.string.isRequired,
-  arriveStation: PropTypes.string.isRequired
+  arriveStation: PropTypes.string.isRequired,
 };
 
 export default Schedule;

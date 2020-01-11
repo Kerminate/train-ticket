@@ -23,7 +23,7 @@ const Header = props => {
 
 Header.propTypes = {
   onBack: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default Header;

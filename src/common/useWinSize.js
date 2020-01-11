@@ -19,6 +19,6 @@ export default function useWinSize() {
 
   return {
     width,
-    height
+    height,
   };
 }

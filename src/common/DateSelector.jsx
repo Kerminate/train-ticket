@@ -31,7 +31,7 @@ const Day = props => {
 
 Day.propTypes = {
   day: PropTypes.number,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 };
 
 const Week = props => {
@@ -48,7 +48,7 @@ const Week = props => {
 
 Week.propTypes = {
   days: PropTypes.array.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 };
 
 const Month = props => {
@@ -107,7 +107,7 @@ const Month = props => {
 
 Month.propTypes = {
   startingTimeInMonth: PropTypes.number.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 };
 
 const DateSelector = props => {
@@ -146,7 +146,7 @@ const DateSelector = props => {
 DateSelector.propTypes = {
   show: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
-  onBack: PropTypes.func.isRequired
+  onBack: PropTypes.func.isRequired,
 };
 
 export default DateSelector;

@@ -18,7 +18,7 @@ const Nav = memo(props => {
       <span
         onClick={prev}
         className={classnames('nav-prev', {
-          'nav-disabled': isPrevDisabled
+          'nav-disabled': isPrevDisabled,
         })}
       >
         前一天
@@ -27,7 +27,7 @@ const Nav = memo(props => {
       <span
         onClick={next}
         className={classnames('nav-next', {
-          'nav-disabled': isNextDisabled
+          'nav-disabled': isNextDisabled,
         })}
       >
         后一天
@@ -41,7 +41,7 @@ Nav.propTypes = {
   prev: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired,
   isPrevDisabled: PropTypes.bool.isRequired,
-  isNextDisabled: PropTypes.bool.isRequired
+  isNextDisabled: PropTypes.bool.isRequired,
 };
 
 export default Nav;

@@ -37,7 +37,7 @@ const Channel = memo(props => {
 Channel.propTypes = {
   name: PropTypes.string.isRequired,
   desc: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
 };
 
 const Seat = memo(props => {
@@ -48,7 +48,7 @@ const Seat = memo(props => {
     channels,
     expanded,
     onToggle,
-    idx
+    idx,
   } = props;
 
   return (
@@ -81,7 +81,7 @@ Seat.propTypes = {
   channels: PropTypes.array.isRequired,
   expanded: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
-  idx: PropTypes.number.isRequired
+  idx: PropTypes.number.isRequired,
 };
 
 const Candidate = memo(props => {
@@ -116,7 +116,7 @@ const Candidate = memo(props => {
 });
 
 Candidate.propTypes = {
-  tickets: PropTypes.array.isRequired
+  tickets: PropTypes.array.isRequired,
 };
 
 export default Candidate;

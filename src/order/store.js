@@ -21,7 +21,7 @@ const store = createStore(
     passengers: [],
     menu: null,
     isMenuVisible: false,
-    searchParsed: false
+    searchParsed: false,
   },
   composeEnhancers(applyMiddleware(thunk))
 );
